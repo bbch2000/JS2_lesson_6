@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Интернет-магазин</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+    <header>
+      <button id='basket' class="btn-cart" @click='isVisibleCart = !isVisibleCart'>Корзина</button>
+       <div class='searchbox'>
+            <input type="text" id="searchinput" v-model='searchText'>
+            <button id='search' @click='filterGoods'></button>
+       </div>
+      
+    </header>
+    
+    <main>
+        <div class="products">
+            <div class="product-item" v-for='product of filterGoods' :key='product.id_product'>
+                <img :src='imgCatalog' alt="">
+                <h3>{{ product.product_name }}</h3>
+                <h4>{{ product.price }}</h4>
+                <button class='add' @click='addProduct(product)'>Купить</button>
+            </div>
+        </div>
+        <div class="basket" :class='{invisible:!isVisibleCart}'>
+            <div class="basket-item">
+                    <h3> #name </h3>
+                    <h4> Cтоимость:  </h4>
+                    <h4> Количество: </h4>
+                    <button class='remove'>удалить</button>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="js/script.js"></script>
+</div>
+</body>
+</html>
